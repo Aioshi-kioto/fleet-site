@@ -30,8 +30,28 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env and secrets — never commit
+.env
+.env.*
+!.env.example
+*.local
+*.key
+*.p12
+*.pfx
+*.crt
+credentials.json
+**/service-account*.json
+secrets/
+
+# local tooling
+.cursor/
+.idea/
+.vscode/
+*.swp
+
+# OS
+Thumbs.db
+Desktop.ini
 
 # vercel
 .vercel
