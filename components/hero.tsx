@@ -11,8 +11,8 @@ const stats = [
   { icon: CarFront, value: site.tripsLabel, label: "Trips completed", filled: false },
   {
     icon: MessageCircle,
-    value: String(site.reviewsCount),
-    label: "Verified reviews",
+    value: "3 years",
+    label: "Hosting on Turo",
     filled: false,
   },
   { icon: Award, value: site.hostBadge, label: "Host status", filled: false },

@@ -13,6 +13,7 @@ import Link from "next/link";
 
 import { BookingCard } from "@/components/booking-card";
 import { FeatureRow } from "@/components/feature-icon";
+import { HostProfileCard } from "@/components/host-card";
 import { MobileCtaBar } from "@/components/mobile-cta-bar";
 import { ReviewCard } from "@/components/reviews-section";
 import { SeattleBanner } from "@/components/seattle-banner";
@@ -148,6 +149,8 @@ export function VehiclePage({ car, reviews }: { car: Car; reviews: Review[] }) {
                 </div>
               </div>
             </section>
+
+            <HostProfileCard className="mt-8" />
 
             <section className="mt-8">
               <h2 className="text-lg font-semibold text-zinc-950">Host quality breakdown</h2>

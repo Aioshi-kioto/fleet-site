@@ -1,12 +1,13 @@
 "use client";
 
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, Sparkles, Star, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+import { HostAvatar } from "@/components/host-card";
 import { Button } from "@/components/ui/button";
-import { navLinks } from "@/data/site";
+import { navLinks, site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 function BrandMark({ className }: { className?: string }) {
@@ -14,12 +15,30 @@ function BrandMark({ className }: { className?: string }) {
     <Link
       href="/"
       className={cn(
-        "text-[15px] tracking-[0.22em] text-zinc-950 uppercase",
+        "flex items-center gap-2.5 transition-opacity hover:opacity-90",
         className,
       )}
     >
-      <span className="font-bold">Roman</span>{" "}
-      <span className="font-medium">Fleet</span>
+      <div className="relative">
+        <HostAvatar size={38} className="border border-zinc-200 shadow-sm" />
+        <div className="absolute -bottom-1 -right-1 flex items-center justify-center rounded-full bg-violet-600 p-0.5 text-white shadow-sm ring-1 ring-white">
+          <Star className="size-2.5 fill-white text-white" />
+        </div>
+      </div>
+      <div className="flex flex-col">
+        <div className="flex items-center gap-1.5">
+          <span className="text-[14px] font-bold tracking-[0.16em] text-zinc-950 uppercase sm:text-[15px]">
+            Roman Fleet
+          </span>
+          <span className="hidden rounded bg-violet-100 px-1.5 py-0.5 text-[10px] font-semibold text-violet-700 sm:inline-flex items-center gap-0.5">
+            <Sparkles className="size-2.5" />
+            {site.hostBadge}
+          </span>
+        </div>
+        <span className="text-[11px] text-zinc-500">
+          5.0 ★ · {site.tripsLabel} · {site.city}
+        </span>
+      </div>
     </Link>
   );
 }
