@@ -1,0 +1,623 @@
+export const carCategories = ["SUV", "Sedan", "Luxury", "Economy"] as const;
+
+export type CarCategory = (typeof carCategories)[number];
+
+export const featureIds = [
+  "bluetooth",
+  "backup-camera",
+  "apple-carplay",
+  "android-auto",
+  "heated-seats",
+  "usb-charging",
+  "spacious-cargo",
+  "keyless-entry",
+  "premium-sound",
+  "all-wheel-drive",
+  "blind-spot-warning",
+  "sunroof",
+  "navigation",
+  "brake-assist",
+  "aux-input",
+  "adaptive-cruise-control",
+  "lane-keep-assist",
+] as const;
+
+export type FeatureId = (typeof featureIds)[number];
+
+export type Car = {
+  slug: string;
+  make: string;
+  model: string;
+  trim?: string;
+  year: number;
+  category: CarCategory;
+  featured: boolean;
+  rating: number;
+  trips: number;
+  seats: number;
+  fuel: string;
+  mpg?: number;
+  transmission: string;
+  drivetrain?: string;
+  summary: string;
+  highlight: string;
+  description: string[];
+  features: FeatureId[];
+  images: string[];
+  turoUrl: string;
+};
+
+function photos(slug: string, count = 7) {
+  return Array.from(
+    { length: count },
+    (_, index) => `/cars/${slug}/${index + 1}.avif`,
+  );
+}
+
+export const cars: Car[] = [
+  {
+    slug: "bmw-x5-2017",
+    make: "BMW",
+    model: "X5",
+    trim: "xDrive35i",
+    year: 2017,
+    category: "SUV",
+    featured: true,
+    rating: 5.0,
+    trips: 14,
+    seats: 5,
+    fuel: "Gas (Premium)",
+    mpg: 21,
+    transmission: "Automatic",
+    drivetrain: "AWD",
+    summary:
+      "Luxury midsize SUV with xDrive all-wheel drive, premium comfort, and generous cargo room for Pacific Northwest travels.",
+    highlight:
+      "Great deal — priced lower than similar options. Spacious, comfortable, and ready for Seattle city driving or mountain getaways.",
+    description: [
+      "The 2017 BMW X5 xDrive35i delivers a refined balance of German luxury and versatile all-weather capability. Equipped with intelligent BMW xDrive AWD, it gives total confidence on wet Seattle streets and mountain highway passes.",
+      "Inside, enjoy heated seats, a panoramic sunroof, Apple CarPlay, Android Auto, navigation, blind spot monitoring, and a pristine clean cabin. Free cancellation within 24 hours of booking and simple keyless pickup via the Turo app.",
+    ],
+    features: [
+      "all-wheel-drive",
+      "apple-carplay",
+      "android-auto",
+      "heated-seats",
+      "sunroof",
+      "backup-camera",
+      "blind-spot-warning",
+      "navigation",
+      "bluetooth",
+      "usb-charging",
+      "spacious-cargo",
+      "premium-sound",
+    ],
+    images: photos("bmw-x5-2017", 6),
+    turoUrl:
+      "https://turo.com/us/en/suv-rental/united-states/federal-way-wa/bmw/x5/3727970",
+  },
+  {
+    slug: "nissan-sentra-2019",
+    make: "Nissan",
+    model: "Sentra",
+    trim: "SR",
+    year: 2019,
+    category: "Sedan",
+    featured: true,
+    rating: 5.0,
+    trips: 4,
+    seats: 5,
+    fuel: "Gas",
+    mpg: 33,
+    transmission: "Automatic",
+    summary:
+      "Sporty and fuel-efficient compact sedan, ideal for Seattle airport runs, downtown commuting, and scenic road trips.",
+    highlight:
+      "Easy Seattle daily driver — highly efficient at 33 MPG, comfortable, and simple to park anywhere downtown.",
+    description: [
+      "The 2019 Nissan Sentra SR is a reliable, fuel-efficient sedan offering a comfortable ride with top-notch 33 MPG economy. Perfect for solo travelers, business trips, or couples exploring the Pacific Northwest.",
+      "Comes loaded with heated seats, adaptive cruise control, Apple CarPlay, Android Auto, backup camera, and keyless entry. Clean, dependable, and ready for easy contactless pickup in Federal Way.",
+    ],
+    features: [
+      "adaptive-cruise-control",
+      "apple-carplay",
+      "android-auto",
+      "heated-seats",
+      "backup-camera",
+      "keyless-entry",
+      "navigation",
+      "bluetooth",
+      "usb-charging",
+      "aux-input",
+      "brake-assist",
+    ],
+    images: photos("nissan-sentra-2019", 6),
+    turoUrl:
+      "https://turo.com/us/en/car-rental/united-states/federal-way-wa/nissan/sentra/3836887",
+  },
+  {
+    slug: "bmw-x3-2018",
+    make: "BMW",
+    model: "X3",
+    trim: "xDrive30i",
+    year: 2018,
+    category: "SUV",
+    featured: true,
+    rating: 5.0,
+    trips: 4,
+    seats: 5,
+    fuel: "Gas",
+    mpg: 26,
+    transmission: "Automatic",
+    drivetrain: "AWD",
+    summary:
+      "Modern generation BMW luxury compact SUV with xDrive AWD, panoramic sunroof, and 26 MPG economy.",
+    highlight:
+      "Great deal — priced lower than similar options. Redesigned X3 generation, AWD traction, panoramic sunroof, and athletic German driving dynamics.",
+    description: [
+      "The 2018 BMW X3 xDrive30i offers contemporary styling, a quiet and roomy cabin, and intelligent xDrive all-wheel drive for effortless driving across Seattle and Washington state.",
+      "Features a panoramic glass sunroof, Apple CarPlay, Android Auto, backup camera, Bluetooth audio, brake assist, and generous cargo room. Clean, responsive, and ready for easy contactless pickup in Federal Way.",
+    ],
+    features: [
+      "all-wheel-drive",
+      "sunroof",
+      "apple-carplay",
+      "android-auto",
+      "backup-camera",
+      "bluetooth",
+      "usb-charging",
+      "aux-input",
+      "brake-assist",
+      "spacious-cargo",
+    ],
+    images: photos("bmw-x3-2018", 7),
+    turoUrl:
+      "https://turo.com/us/en/suv-rental/united-states/federal-way-wa/bmw/x3/3790040",
+  },
+  {
+    slug: "volkswagen-tiguan-2019",
+    make: "Volkswagen",
+    model: "Tiguan",
+    trim: "SEL",
+    year: 2019,
+    category: "SUV",
+    featured: false,
+    rating: 5.0,
+    trips: 12,
+    seats: 5,
+    fuel: "Gas",
+    mpg: 25,
+    transmission: "Automatic",
+    drivetrain: "AWD",
+    summary:
+      "Versatile midsize German SUV with AWD, panoramic sunroof, and generous space for Pacific Northwest adventures.",
+    highlight:
+      "Great deal — priced lower than similar options. Spacious, comfortable, and perfect for city driving or weekend getaways.",
+    description: [
+      "The 2019 Volkswagen Tiguan SEL is a versatile German-engineered midsize SUV with all-wheel drive, refined styling, and plenty of cargo space for your gear.",
+      "Features adaptive cruise control, panoramic sunroof, heated seats, Apple CarPlay, Android Auto, blind spot monitoring, and GPS navigation. Smooth, safe, and ready for all Washington weather conditions.",
+    ],
+    features: [
+      "all-wheel-drive",
+      "adaptive-cruise-control",
+      "sunroof",
+      "apple-carplay",
+      "android-auto",
+      "heated-seats",
+      "backup-camera",
+      "blind-spot-warning",
+      "navigation",
+      "bluetooth",
+      "usb-charging",
+      "spacious-cargo",
+      "aux-input",
+      "brake-assist",
+    ],
+    images: photos("volkswagen-tiguan-2019", 7),
+    turoUrl:
+      "https://turo.com/us/en/suv-rental/united-states/federal-way-wa/volkswagen/tiguan/3786925",
+  },
+  {
+    slug: "hyundai-sonata-2023",
+    make: "Hyundai",
+    model: "Sonata",
+    trim: "SE",
+    year: 2023,
+    category: "Sedan",
+    featured: true,
+    rating: 4.93,
+    trips: 51,
+    seats: 5,
+    fuel: "Gas (Regular)",
+    mpg: 33,
+    transmission: "Automatic",
+    summary:
+      "Modern 2023 sedan with 33 MPG economy, advanced active safety suite, Apple CarPlay, and high-tech comfort.",
+    highlight:
+      "Great deal — priced lower than similar options. New 2023 model, 33 MPG efficiency, and ultra-smooth highway driving.",
+    description: [
+      "The 2023 Hyundai Sonata SE is a stylish, reliable, and fuel-efficient modern sedan that excels for both Seattle city commutes and longer Washington road trips.",
+      "Comes equipped with adaptive cruise control, lane keeping assist, Apple CarPlay, Android Auto, backup camera, blind spot warning, and prepaid refuel options. Clean, comfortable, and easy contactless pickup in Federal Way.",
+    ],
+    features: [
+      "adaptive-cruise-control",
+      "lane-keep-assist",
+      "apple-carplay",
+      "android-auto",
+      "backup-camera",
+      "blind-spot-warning",
+      "bluetooth",
+      "usb-charging",
+      "aux-input",
+      "brake-assist",
+      "spacious-cargo",
+    ],
+    images: photos("hyundai-sonata-2023", 7),
+    turoUrl:
+      "https://turo.com/us/en/car-rental/united-states/federal-way-wa/hyundai/sonata/2741244",
+  },
+  {
+    slug: "audi-a5-2018",
+    make: "Audi",
+    model: "A5",
+    trim: "Premium Plus",
+    year: 2018,
+    category: "Luxury",
+    featured: true,
+    rating: 4.98,
+    trips: 59,
+    seats: 5,
+    fuel: "Gas (Premium)",
+    mpg: 29,
+    transmission: "Automatic",
+    drivetrain: "AWD",
+    summary:
+      "Premium German luxury sportback with legendary quattro AWD, panoramic sunroof, and 29 MPG efficiency.",
+    highlight:
+      "Great deal — priced lower than similar luxury options. Quattro AWD confidence, refined cabin, and thrilling German engineering.",
+    description: [
+      "The 2018 Audi A5 Premium Plus combines sleek executive styling, responsive turbocharged acceleration, and legendary quattro all-wheel drive for effortless driving across the Pacific Northwest.",
+      "Features heated leather seats, panoramic sunroof, Apple CarPlay, Android Auto, blind spot monitoring, keyless entry, navigation, and an upgraded sound system. Immaculate condition and ready for easy contactless pickup in Federal Way.",
+    ],
+    features: [
+      "all-wheel-drive",
+      "sunroof",
+      "heated-seats",
+      "apple-carplay",
+      "android-auto",
+      "backup-camera",
+      "blind-spot-warning",
+      "keyless-entry",
+      "navigation",
+      "bluetooth",
+      "usb-charging",
+      "aux-input",
+      "brake-assist",
+      "premium-sound",
+      "spacious-cargo",
+    ],
+    images: photos("audi-a5-2018", 7),
+    turoUrl:
+      "https://turo.com/us/en/car-rental/united-states/federal-way-wa/audi/a5/2878544",
+  },
+  {
+    slug: "kia-soul-2021",
+    make: "Kia",
+    model: "Soul",
+    trim: "LX",
+    year: 2021,
+    category: "Economy",
+    featured: false,
+    rating: 5.0,
+    trips: 0,
+    seats: 5,
+    fuel: "Gas",
+    mpg: 32,
+    transmission: "Automatic",
+    summary:
+      "Fun, fuel-efficient compact crossover with 32 MPG, Apple CarPlay, and iconic modern styling for easy city driving.",
+    highlight:
+      "New addition to the fleet! Clean 2021 crossover with 32 MPG economy, roomy headroom, and easy Seattle parking.",
+    description: [
+      "The 2021 Kia Soul LX is a versatile and economical compact crossover combining distinctive modern styling, excellent visibility, generous headroom, and impressive 32 MPG efficiency.",
+      "Equipped with Apple CarPlay, Android Auto, backup camera, Bluetooth, and brake assist. Agile, clean, and perfectly suited for downtown Seattle commutes and Pacific Northwest road trips.",
+    ],
+    features: [
+      "apple-carplay",
+      "android-auto",
+      "backup-camera",
+      "bluetooth",
+      "usb-charging",
+      "aux-input",
+      "brake-assist",
+      "spacious-cargo",
+    ],
+    images: photos("kia-soul-2021", 7),
+    turoUrl:
+      "https://turo.com/us/en/suv-rental/united-states/federal-way-wa/kia/soul/3791122",
+  },
+  {
+    slug: "volkswagen-tiguan-2018",
+    make: "Volkswagen",
+    model: "Tiguan",
+    trim: "SEL Premium",
+    year: 2018,
+    category: "SUV",
+    featured: false,
+    rating: 5.0,
+    trips: 6,
+    seats: 5,
+    fuel: "Gas",
+    mpg: 24,
+    transmission: "Automatic",
+    drivetrain: "AWD",
+    summary:
+      "Top-tier SEL Premium German SUV with 4Motion AWD, panoramic glass sunroof, adaptive cruise control, and leather seating.",
+    highlight:
+      "Great deal — priced lower than similar options. SEL Premium luxury trim, AWD all-weather confidence, and spacious 5-passenger comfort.",
+    description: [
+      "The 2018 Volkswagen Tiguan SEL Premium represents the pinnacle of VW's midsize SUV lineup, combining intelligent 4Motion all-wheel drive, refined leather upholstery, and a massive panoramic sunroof.",
+      "Comes fully loaded with adaptive cruise control, lane keeping assist, Apple CarPlay, Android Auto, backup camera, blind spot warning, keyless entry, navigation, and optional child safety seats. Effortless and comfortable for all Pacific Northwest explorations.",
+    ],
+    features: [
+      "all-wheel-drive",
+      "adaptive-cruise-control",
+      "lane-keep-assist",
+      "sunroof",
+      "heated-seats",
+      "apple-carplay",
+      "android-auto",
+      "backup-camera",
+      "blind-spot-warning",
+      "keyless-entry",
+      "navigation",
+      "bluetooth",
+      "usb-charging",
+      "aux-input",
+      "brake-assist",
+      "spacious-cargo",
+    ],
+    images: photos("volkswagen-tiguan-2018", 7),
+    turoUrl:
+      "https://turo.com/us/en/suv-rental/united-states/federal-way-wa/volkswagen/tiguan/3782121",
+  },
+  {
+    slug: "mitsubishi-outlander-sport-2019",
+    make: "Mitsubishi",
+    model: "Outlander Sport",
+    trim: "SE 2.0",
+    year: 2019,
+    category: "SUV",
+    featured: false,
+    rating: 5.0,
+    trips: 10,
+    seats: 5,
+    fuel: "Gas",
+    mpg: 26,
+    transmission: "Automatic",
+    drivetrain: "AWD",
+    summary:
+      "Agile and dependable compact AWD SUV with heated seats, Apple CarPlay, and 26 MPG efficiency.",
+    highlight:
+      "AWD confidence and high seating position. Easy to drive and park around Seattle, with great highway MPG.",
+    description: [
+      "The 2019 Mitsubishi Outlander Sport SE 2.0 is a nimble compact SUV that pairs all-wheel-drive capability with easy maneuverability and strong fuel economy.",
+      "Features heated seats, Apple CarPlay, Android Auto, backup camera, blind spot monitoring, keyless entry, and touchscreen navigation. Clean, versatile, and ready for quick airport pickups in Federal Way.",
+    ],
+    features: [
+      "all-wheel-drive",
+      "heated-seats",
+      "apple-carplay",
+      "android-auto",
+      "backup-camera",
+      "blind-spot-warning",
+      "keyless-entry",
+      "navigation",
+      "bluetooth",
+      "usb-charging",
+      "aux-input",
+      "brake-assist",
+      "spacious-cargo",
+    ],
+    images: photos("mitsubishi-outlander-sport-2019", 7),
+    turoUrl:
+      "https://turo.com/us/en/suv-rental/united-states/federal-way-wa/mitsubishi/outlander-sport/3795699",
+  },
+  {
+    slug: "bmw-5-series-2016",
+    make: "BMW",
+    model: "5 Series",
+    trim: "535i",
+    year: 2016,
+    category: "Luxury",
+    featured: true,
+    rating: 5.0,
+    trips: 3,
+    seats: 5,
+    fuel: "Gas (Premium)",
+    mpg: 26,
+    transmission: "Automatic",
+    summary:
+      "Executive German luxury sports sedan with turbocharged inline-6 power, sunroof, and refined highway cruising.",
+    highlight:
+      "Legendary BMW 535i turbocharged performance, executive leather cabin, glass sunroof, and supreme long-distance comfort.",
+    description: [
+      "The 2016 BMW 535i delivers an exceptional balance of sports sedan agility and executive comfort. Powered by BMW's smooth turbocharged inline-6 engine, it accelerates effortlessly while maintaining a quiet, composed cabin.",
+      "Features a glass sunroof, GPS navigation, backup camera, Bluetooth audio, brake assist, and premium sound. Perfect for executive business travel, airport service, or touring the Pacific Northwest in style.",
+    ],
+    features: [
+      "sunroof",
+      "backup-camera",
+      "navigation",
+      "bluetooth",
+      "usb-charging",
+      "aux-input",
+      "brake-assist",
+      "premium-sound",
+      "spacious-cargo",
+    ],
+    images: photos("bmw-5-series-2016", 7),
+    turoUrl:
+      "https://turo.com/us/en/car-rental/united-states/federal-way-wa/bmw/5-series/3791225",
+  },
+  {
+    slug: "mercedes-benz-c-class-2018",
+    make: "Mercedes-Benz",
+    model: "C-Class",
+    trim: "C 300",
+    year: 2018,
+    category: "Luxury",
+    featured: true,
+    rating: 4.98,
+    trips: 49,
+    seats: 4,
+    fuel: "Gas (Premium)",
+    mpg: 28,
+    transmission: "Automatic",
+    summary:
+      "Prestigious German luxury sports sedan with refined turbo power, sunroof, heated seats, and 28 MPG economy.",
+    highlight:
+      "Timeless Mercedes-Benz craftsmanship, leather upholstery, sunroof, and agile handling across Seattle and beyond.",
+    description: [
+      "The 2018 Mercedes-Benz C 300 delivers quintessential German luxury, effortless turbocharged acceleration, and a serene, quiet ride.",
+      "Comes loaded with heated seats, sunroof, Apple CarPlay, Android Auto, backup camera, blind spot monitoring, keyless entry, and premium audio. Immaculate condition and ready for easy contactless pickup in Federal Way.",
+    ],
+    features: [
+      "sunroof",
+      "heated-seats",
+      "apple-carplay",
+      "android-auto",
+      "backup-camera",
+      "blind-spot-warning",
+      "keyless-entry",
+      "bluetooth",
+      "usb-charging",
+      "aux-input",
+      "brake-assist",
+      "premium-sound",
+      "spacious-cargo",
+    ],
+    images: photos("mercedes-benz-c-class-2018", 7),
+    turoUrl:
+      "https://turo.com/us/en/car-rental/united-states/federal-way-wa/mercedes-benz/c-class/2968761",
+  },
+  {
+    slug: "bmw-x3-2017",
+    make: "BMW",
+    model: "X3",
+    trim: "xDrive28i",
+    year: 2017,
+    category: "SUV",
+    featured: false,
+    rating: 5.0,
+    trips: 5,
+    seats: 5,
+    fuel: "Gas",
+    mpg: 24,
+    transmission: "Automatic",
+    drivetrain: "AWD",
+    summary:
+      "Agile and versatile compact luxury SUV with xDrive AWD, panoramic sunroof, and 24 MPG efficiency.",
+    highlight:
+      "Great deal — priced lower than similar luxury SUVs. All-wheel drive confidence, sunroof, and comfortable Seattle driving.",
+    description: [
+      "The 2017 BMW X3 xDrive28i is an athletic luxury compact SUV equipped with BMW's intelligent xDrive all-wheel drive, providing solid traction and composed handling on both city streets and mountain highways.",
+      "Features a glass sunroof, Apple CarPlay, Android Auto, backup camera, keyless entry, GPS navigation, and generous luggage space. Clean, responsive, and ready for easy contactless pickup in Federal Way.",
+    ],
+    features: [
+      "all-wheel-drive",
+      "sunroof",
+      "apple-carplay",
+      "android-auto",
+      "backup-camera",
+      "keyless-entry",
+      "navigation",
+      "bluetooth",
+      "usb-charging",
+      "aux-input",
+      "brake-assist",
+      "spacious-cargo",
+    ],
+    images: photos("bmw-x3-2017", 7),
+    turoUrl:
+      "https://turo.com/us/en/suv-rental/united-states/federal-way-wa/bmw/x3/3793036",
+  },
+  {
+    slug: "kia-sportage-hybrid-2023",
+    make: "Kia",
+    model: "Sportage Hybrid",
+    trim: "LX",
+    year: 2023,
+    category: "SUV",
+    featured: true,
+    rating: 4.92,
+    trips: 16,
+    seats: 5,
+    fuel: "Hybrid (Regular)",
+    mpg: 38,
+    transmission: "Automatic",
+    drivetrain: "AWD",
+    summary:
+      "Next-gen 2023 all-wheel-drive Hybrid SUV delivering phenomenal 38 MPG economy, heated seats, and modern styling.",
+    highlight:
+      "Great deal — priced lower than similar SUVs. Ultra-efficient 38 MPG hybrid powertrain, AWD all-weather traction, and new 2023 tech.",
+    description: [
+      "The 2023 Kia Sportage Hybrid LX combines futuristic styling, robust all-wheel drive, and outstanding 38 MPG efficiency for unbeatable road trip economics across Washington state.",
+      "Comes equipped with heated seats, lane keeping assist, Apple CarPlay, Android Auto, backup camera, blind spot monitoring, and generous cargo room. Ultra-smooth, quiet, and exceptionally clean for Federal Way pickups.",
+    ],
+    features: [
+      "all-wheel-drive",
+      "lane-keep-assist",
+      "heated-seats",
+      "apple-carplay",
+      "android-auto",
+      "backup-camera",
+      "bluetooth",
+      "usb-charging",
+      "aux-input",
+      "brake-assist",
+      "spacious-cargo",
+    ],
+    images: photos("kia-sportage-hybrid-2023", 7),
+    turoUrl:
+      "https://turo.com/us/en/suv-rental/united-states/federal-way-wa/kia/sportage-hybrid/3731473",
+  },
+  {
+    slug: "jeep-grand-cherokee-2015",
+    make: "Jeep",
+    model: "Grand Cherokee",
+    trim: "Limited",
+    year: 2015,
+    category: "SUV",
+    featured: false,
+    rating: 4.88,
+    trips: 9,
+    seats: 5,
+    fuel: "Gas",
+    mpg: 20,
+    transmission: "Automatic",
+    drivetrain: "AWD",
+    summary:
+      "Rugged 4x4 American midsize SUV with heated leather seats, commanding road view, and Pacific Northwest adventure capability.",
+    highlight:
+      "Full-size 4x4 capability, heated leather seats, massive cargo area, and sturdy confidence for mountain passes and coastal road trips.",
+    description: [
+      "The 2015 Jeep Grand Cherokee Limited delivers classic rugged capability paired with luxury amenities. Its intelligent 4WD system, high ground clearance, and spacious interior make it the ideal vehicle for Washington driving in any season.",
+      "Features heated leather seats, backup camera, keyless entry, Bluetooth audio, brake assist, and ample luggage space. Clean, powerful, and ready for easy contactless pickup in Federal Way.",
+    ],
+    features: [
+      "all-wheel-drive",
+      "heated-seats",
+      "backup-camera",
+      "keyless-entry",
+      "bluetooth",
+      "usb-charging",
+      "aux-input",
+      "brake-assist",
+      "spacious-cargo",
+    ],
+    images: photos("jeep-grand-cherokee-2015", 7),
+    turoUrl:
+      "https://turo.com/us/en/suv-rental/united-states/federal-way-wa/jeep/grand-cherokee/3784519",
+  },
+];
