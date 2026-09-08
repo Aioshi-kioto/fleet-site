@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
-import { PhotoSlot } from "@/components/photo-slot";
 import { TuroLink } from "@/components/turo-link";
 import { site } from "@/data/site";
 import { publicImage } from "@/lib/public-image";
@@ -22,33 +22,54 @@ export function SeattleBanner({
   action,
   script = "Seattle Awaits",
 }: SeattleBannerProps) {
+  const bgImage = publicImage(site.ctaImage);
+
   return (
-    <section className="relative isolate overflow-hidden">
-      <PhotoSlot
-        src={publicImage(site.ctaImage)}
-        alt="Seattle skyline"
-        label="Seattle skyline"
-        className="absolute inset-0 h-full min-h-[280px]"
-        imageClassName="object-cover"
-        sizes="100vw"
-      />
-      <div className="absolute inset-0 bg-zinc-950/55" />
-      <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:py-20">
-        <div className="max-w-xl text-white">
+    <section className="relative isolate overflow-hidden bg-zinc-950 text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.2),rgba(255,255,255,0))]" />
+
+      {bgImage ? (
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src={bgImage}
+            alt="Seattle skyline"
+            fill
+            sizes="100vw"
+            className="object-cover opacity-25"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent" />
+        </div>
+      ) : null}
+
+      <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-8 px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:py-20">
+        <div className="max-w-xl">
           {eyebrow ? (
-            <p className="text-xs font-medium tracking-[0.22em] text-white/70 uppercase">
+            <p className="text-xs font-semibold tracking-[0.25em] text-zinc-400 uppercase">
               {eyebrow}
             </p>
           ) : null}
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight lg:text-4xl">{title}</h2>
-          {body ? <p className="mt-3 text-sm leading-6 text-white/80">{body}</p> : null}
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            {title}
+          </h2>
+          {body ? (
+            <p className="mt-3 text-base leading-7 text-zinc-300">
+              {body}
+            </p>
+          ) : null}
         </div>
-        <div className="flex w-full flex-col items-start gap-4 sm:w-auto sm:items-end">
-          <TuroLink href={href} className="h-11 rounded-lg bg-zinc-950 px-5 hover:bg-zinc-900">
+
+        <div className="flex w-full flex-col items-start gap-5 sm:w-auto sm:items-end">
+          <TuroLink
+            href={href}
+            className="h-12 rounded-xl bg-white px-6 text-sm font-semibold text-zinc-950 shadow-xl transition-all hover:bg-zinc-100 hover:scale-[1.02] active:scale-[0.98]"
+            showIcon={false}
+          >
             {action}
-            <ArrowRight className="size-4" />
+            <ArrowRight className="ml-2 size-4 text-zinc-950" />
           </TuroLink>
-          <p className="font-script text-4xl text-white/90">{script}</p>
+          <p className="font-script text-4xl text-white/95 sm:text-5xl tracking-wide select-none">
+            {script}
+          </p>
         </div>
       </div>
     </section>
