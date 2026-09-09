@@ -33,12 +33,12 @@ export function Hero() {
               Hosted by {site.hostName}
             </span>
             <span className="h-3 w-px bg-zinc-200" />
-            <span className="inline-flex items-center gap-1 text-xs font-semibold text-violet-700">
-              <Sparkles className="size-3" />
+            <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700">
+              <Sparkles className="size-3 text-emerald-600" />
               {site.hostBadge}
             </span>
             <span className="hidden text-xs text-zinc-500 sm:inline">
-              • 5.0 ★ ({site.tripsLabel})
+              • <span className="font-semibold text-amber-500">5.0 ★</span> ({site.tripsLabel})
             </span>
           </div>
 
@@ -93,8 +93,8 @@ export function Hero() {
               <span className="text-2xl font-bold tracking-tight text-zinc-950">
                 5.0 ★
               </span>
-              <div className="flex size-9 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
-                <Star className="size-4.5 fill-violet-600" />
+              <div className="flex size-9 items-center justify-center rounded-xl bg-amber-50 text-amber-500">
+                <Star className="size-4.5 fill-amber-400 text-amber-500" />
               </div>
             </div>
             <h3 className="mt-3 text-sm font-semibold text-zinc-900">
@@ -110,8 +110,8 @@ export function Hero() {
               <span className="text-2xl font-bold tracking-tight text-zinc-950">
                 All-Star
               </span>
-              <div className="flex size-9 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
-                <Award className="size-4.5" />
+              <div className="flex size-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+                <Award className="size-4.5 text-emerald-600" />
               </div>
             </div>
             <h3 className="mt-3 text-sm font-semibold text-zinc-900">

@@ -20,7 +20,6 @@ export const site = {
 
 export const navLinks = [
   { href: "/cars", label: "Fleet" },
-  { href: "/#why-us", label: "Why us" },
   { href: "/#reviews", label: "Reviews" },
   { href: "/#faq", label: "FAQ" },
 ] as const;

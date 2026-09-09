@@ -21,7 +21,7 @@ function BrandMark({ className }: { className?: string }) {
     >
       <div className="relative">
         <HostAvatar size={38} className="border border-zinc-200 shadow-sm" />
-        <div className="absolute -bottom-1 -right-1 flex items-center justify-center rounded-full bg-violet-600 p-0.5 text-white shadow-sm ring-1 ring-white">
+        <div className="absolute -bottom-1 -right-1 flex items-center justify-center rounded-full bg-amber-500 p-0.5 text-white shadow-sm ring-1 ring-white">
           <Star className="size-2.5 fill-white text-white" />
         </div>
       </div>
@@ -30,13 +30,13 @@ function BrandMark({ className }: { className?: string }) {
           <span className="text-[14px] font-bold tracking-[0.16em] text-zinc-950 uppercase sm:text-[15px]">
             Roman Fleet
           </span>
-          <span className="hidden rounded bg-violet-100 px-1.5 py-0.5 text-[10px] font-semibold text-violet-700 sm:inline-flex items-center gap-0.5">
-            <Sparkles className="size-2.5" />
+          <span className="hidden rounded-md bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-800 sm:inline-flex items-center gap-0.5">
+            <Sparkles className="size-2.5 text-emerald-600" />
             {site.hostBadge}
           </span>
         </div>
         <span className="text-[11px] text-zinc-500">
-          5.0 ★ · {site.tripsLabel} · {site.city}
+          <span className="text-amber-500 font-semibold">5.0 ★</span> · {site.tripsLabel} · {site.city}
         </span>
       </div>
     </Link>

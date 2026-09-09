@@ -13,8 +13,8 @@ export default function Home() {
     <div className="pb-20 lg:pb-0">
       <Hero />
       <FeaturedVehicles cars={featuredCars()} />
-      <HowItWorks />
       <ReviewsSection items={hostReviews()} />
+      <HowItWorks />
       <FaqSection />
       <SeattleBanner
         title="Ready for your Seattle adventure?"

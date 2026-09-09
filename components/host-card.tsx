@@ -58,7 +58,7 @@ export function HostProfileCard({ className }: { className?: string }) {
             <HostAvatar size={64} className="border-2 border-white shadow-md" />
             <div className="absolute -bottom-1.5 left-1/2 flex -translate-x-1/2 items-center gap-0.5 rounded-full bg-zinc-950 px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">
               <span>{site.rating}</span>
-              <Star className="size-2.5 fill-violet-400 text-violet-400" />
+              <Star className="size-2.5 fill-amber-400 text-amber-400" />
             </div>
           </div>
           <div>
@@ -66,8 +66,8 @@ export function HostProfileCard({ className }: { className?: string }) {
               <h2 className="text-base font-bold text-zinc-950 sm:text-lg">
                 {site.hostSubtitle}
               </h2>
-              <span className="inline-flex items-center gap-1 rounded-md bg-violet-100 px-2 py-0.5 text-xs font-semibold text-violet-700">
-                <Sparkles className="size-3" />
+              <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 border border-emerald-200/60 px-2 py-0.5 text-xs font-semibold text-emerald-800">
+                <Sparkles className="size-3 text-emerald-600" />
                 {site.hostBadge}
               </span>
             </div>

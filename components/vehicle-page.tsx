@@ -69,7 +69,7 @@ export function VehiclePage({ car, reviews }: { car: Car; reviews: Review[] }) {
             <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-600">
               <span>{carEyebrow(car)}</span>
               <span className="inline-flex items-center gap-1">
-                <Star className="size-3.5 fill-violet-600 text-violet-600" />
+                <Star className="size-3.5 fill-amber-400 text-amber-500" />
                 {car.rating.toFixed(1)} rating
               </span>
               <span className="inline-flex items-center gap-1">
