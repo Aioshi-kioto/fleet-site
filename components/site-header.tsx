@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Menu, Star, X } from "lucide-react";
+import { ArrowRight, Menu, Sparkles, Star, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -20,9 +20,9 @@ function BrandMark({ className }: { className?: string }) {
       )}
     >
       <div className="relative">
-        <HostAvatar size={36} className="border border-zinc-200 shadow-xs" />
-        <div className="absolute -bottom-0.5 -right-0.5 flex items-center justify-center rounded-full bg-amber-500 p-0.5 text-white shadow-xs ring-1 ring-white">
-          <Star className="size-2 fill-white text-white" />
+        <HostAvatar size={38} className="border border-zinc-200 shadow-sm" />
+        <div className="absolute -bottom-1 -right-1 flex items-center justify-center rounded-full bg-amber-500 p-0.5 text-white shadow-sm ring-1 ring-white">
+          <Star className="size-2.5 fill-white text-white" />
         </div>
       </div>
       <div className="flex flex-col">
@@ -30,13 +30,13 @@ function BrandMark({ className }: { className?: string }) {
           <span className="text-[14px] font-bold tracking-[0.16em] text-zinc-950 uppercase sm:text-[15px]">
             Roman Fleet
           </span>
-          <span className="hidden rounded-full bg-emerald-900 px-2 py-0.5 text-[10px] font-semibold text-white shadow-2xs sm:inline-flex items-center gap-1">
-            <Star className="size-2.5 fill-amber-400 text-amber-400" />
+          <span className="hidden rounded-md bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-800 sm:inline-flex items-center gap-0.5">
+            <Sparkles className="size-2.5 text-emerald-600" />
             {site.hostBadge}
           </span>
         </div>
         <span className="text-[11px] text-zinc-500">
-          <span className="text-amber-500 font-bold">5.0 ★</span> · {site.tripsLabel} · {site.city}
+          <span className="text-amber-500 font-semibold">5.0 ★</span> · {site.tripsLabel} · {site.city}
         </span>
       </div>
     </Link>
@@ -66,7 +66,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <BrandMark />
 
-        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex">
           {navLinks.map((link) => {
             const active =
               link.href === "/cars"
@@ -79,10 +79,8 @@ export function SiteHeader() {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={cn(
-                  "rounded-lg px-3.5 py-1.5 text-sm font-medium transition-colors",
-                  active
-                    ? "bg-zinc-100 text-zinc-950 font-semibold"
-                    : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-950",
+                  "text-sm text-zinc-600 transition-colors hover:text-zinc-950",
+                  active && "text-zinc-950",
                 )}
               >
                 {link.label}
@@ -92,20 +90,17 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button
-            asChild
-            className="hidden h-9.5 rounded-lg px-4 text-xs font-semibold sm:inline-flex"
-          >
-            <Link href="/cars" className="flex items-center gap-1.5">
-              <span>Browse cars</span>
-              <ArrowRight className="size-3.5" />
+          <Button asChild className="hidden h-10 rounded-lg px-4 lg:inline-flex">
+            <Link href="/cars">
+              Browse cars
+              <ArrowRight className="size-4" />
             </Link>
           </Button>
           <Button
             type="button"
             variant="ghost"
             size="icon"
-            className="md:hidden size-10 rounded-lg"
+            className="lg:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((value) => !value)}
           >
@@ -115,40 +110,24 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="border-t border-zinc-200 bg-white px-4 py-3 md:hidden">
+        <div className="border-t border-zinc-200 bg-white px-4 py-4 lg:hidden">
           <nav className="flex flex-col gap-1">
-            {navLinks.map((link) => {
-              const active =
-                link.href === "/cars"
-                  ? pathname.startsWith("/cars")
-                  : false;
-
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
-                    active
-                      ? "bg-zinc-100 text-zinc-950 font-semibold"
-                      : "text-zinc-700 hover:bg-zinc-50 hover:text-zinc-950",
-                  )}
-                  onClick={(e) => {
-                    setOpen(false);
-                    handleNavClick(e, link.href);
-                  }}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-            <Button asChild className="mt-2 h-10 rounded-lg text-sm font-semibold">
+            {navLinks.map((link) => (
               <Link
-                href="/cars"
-                onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-1.5"
+                key={link.href}
+                href={link.href}
+                className="rounded-lg px-3 py-3 text-base text-zinc-800"
+                onClick={(e) => {
+                  setOpen(false);
+                  handleNavClick(e, link.href);
+                }}
               >
-                <span>Browse cars</span>
+                {link.label}
+              </Link>
+            ))}
+            <Button asChild className="mt-2 h-11 rounded-lg">
+              <Link href="/cars" onClick={() => setOpen(false)}>
+                Browse cars
                 <ArrowRight className="size-4" />
               </Link>
             </Button>

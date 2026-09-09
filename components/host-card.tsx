@@ -1,6 +1,6 @@
 "use client";
 
-import { Star } from "lucide-react";
+import { Sparkles, Star } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -66,8 +66,8 @@ export function HostProfileCard({ className }: { className?: string }) {
               <h2 className="text-base font-bold text-zinc-950 sm:text-lg">
                 {site.hostSubtitle}
               </h2>
-              <span className="inline-flex items-center gap-1 rounded-full bg-emerald-900 px-2.5 py-0.5 text-xs font-semibold text-white shadow-2xs">
-                <Star className="size-3 fill-amber-400 text-amber-400" />
+              <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 border border-emerald-200/60 px-2 py-0.5 text-xs font-semibold text-emerald-800">
+                <Sparkles className="size-3 text-emerald-600" />
                 {site.hostBadge}
               </span>
             </div>

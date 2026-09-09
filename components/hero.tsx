@@ -4,6 +4,7 @@ import {
   CarFront,
   Check,
   MapPin,
+  Sparkles,
   Star,
 } from "lucide-react";
 import Link from "next/link";
@@ -31,8 +32,8 @@ export function Hero() {
               Hosted by {site.hostName}
             </span>
             <span className="h-3 w-px bg-zinc-200" />
-            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-900 px-2 py-0.5 text-[11px] font-semibold text-white shadow-2xs">
-              <Star className="size-2.5 fill-amber-400 text-amber-400" />
+            <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700">
+              <Sparkles className="size-3 text-emerald-600" />
               {site.hostBadge}
             </span>
             <span className="hidden text-xs text-zinc-500 sm:inline">
@@ -75,7 +76,7 @@ export function Hero() {
           <div className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs text-zinc-600">
             {highlights.map((item) => (
               <span key={item} className="inline-flex items-center gap-1.5">
-                <Check className="size-3.5 text-emerald-800" />
+                <Check className="size-3.5 text-emerald-600" />
                 {item}
               </span>
             ))}
@@ -106,8 +107,8 @@ export function Hero() {
               <span className="text-xl font-bold tracking-tight text-zinc-950 sm:text-2xl">
                 All-Star
               </span>
-              <div className="flex size-8 items-center justify-center rounded-lg bg-emerald-900 text-white">
-                <Award className="size-4 text-emerald-100" />
+              <div className="flex size-8 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
+                <Award className="size-4 text-emerald-600" />
               </div>
             </div>
             <h3 className="mt-2 text-xs sm:text-sm font-semibold text-zinc-900">
