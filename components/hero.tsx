@@ -4,7 +4,6 @@ import {
   CarFront,
   Check,
   MapPin,
-  ShieldCheck,
   Sparkles,
   Star,
 } from "lucide-react";
@@ -118,7 +117,7 @@ export function Hero() {
               Top-Tier Host
             </h3>
             <p className="mt-1 text-xs leading-5 text-zinc-500">
-              Ranked in Turo's highest tier of most dependable and highest-rated hosts.
+              Ranked in Turo&apos;s highest tier of most dependable and highest-rated hosts.
             </p>
           </div>
 

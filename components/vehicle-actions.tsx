@@ -5,7 +5,12 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 
-export function VehicleActions({ slug, name }: { slug: string; name: string }) {
+export function VehicleActions({
+  name,
+}: {
+  slug?: string;
+  name: string;
+}) {
   const [copied, setCopied] = useState(false);
 
   async function share() {

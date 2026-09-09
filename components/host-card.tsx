@@ -1,6 +1,6 @@
 "use client";
 
-import { Award, ShieldCheck, Sparkles, Star, User } from "lucide-react";
+import { Sparkles, Star } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
