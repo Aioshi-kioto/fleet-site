@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Menu, Sparkles, Star, X } from "lucide-react";
+import { ArrowRight, Menu, Star, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -30,8 +30,8 @@ function BrandMark({ className }: { className?: string }) {
           <span className="text-[14px] font-bold tracking-[0.16em] text-zinc-950 uppercase sm:text-[15px]">
             Roman Fleet
           </span>
-          <span className="hidden rounded-md bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-800 sm:inline-flex items-center gap-1">
-            <Sparkles className="size-2.5 text-emerald-600" />
+          <span className="hidden rounded-md bg-amber-50/80 border border-amber-200/70 px-1.5 py-0.5 text-[10px] font-semibold text-amber-900 sm:inline-flex items-center gap-1">
+            <Star className="size-2.5 fill-amber-400 text-amber-500" />
             {site.hostBadge}
           </span>
         </div>

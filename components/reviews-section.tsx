@@ -63,8 +63,8 @@ export function ReviewCard({
             </div>
           </div>
 
-          <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-emerald-50 px-1.5 py-0.5 text-[9px] font-semibold text-emerald-700 border border-emerald-100/80">
-            <ShieldCheck className="size-2.5" />
+          <span className="inline-flex shrink-0 items-center gap-1 rounded-md bg-zinc-100/90 px-1.5 py-0.5 text-[9px] font-medium text-zinc-500 border border-zinc-200/60">
+            <ShieldCheck className="size-2.5 text-zinc-400" />
             Verified
           </span>
         </div>

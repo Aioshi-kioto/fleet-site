@@ -120,28 +120,28 @@ export function VehiclePage({ car, reviews }: { car: Car; reviews: Review[] }) {
               <h2 className="text-base font-semibold text-zinc-950">Included with every rental</h2>
               <div className="mt-4 grid gap-3.5 sm:grid-cols-2">
                 <div className="flex items-start gap-2.5">
-                  <div className="mt-0.5 size-1.5 rounded-full bg-emerald-600 shrink-0" />
+                  <div className="mt-0.5 size-1.5 rounded-full bg-zinc-900 shrink-0" />
                   <div>
                     <p className="text-sm font-medium text-zinc-900">Skip the rental counter</p>
                     <p className="text-xs text-zinc-500">Contactless pickup & return via the Turo app</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <div className="mt-0.5 size-1.5 rounded-full bg-emerald-600 shrink-0" />
+                  <div className="mt-0.5 size-1.5 rounded-full bg-zinc-900 shrink-0" />
                   <div>
                     <p className="text-sm font-medium text-zinc-900">Free additional drivers</p>
                     <p className="text-xs text-zinc-500">Add verified drivers at no extra charge</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <div className="mt-0.5 size-1.5 rounded-full bg-emerald-600 shrink-0" />
+                  <div className="mt-0.5 size-1.5 rounded-full bg-zinc-900 shrink-0" />
                   <div>
                     <p className="text-sm font-medium text-zinc-900">30-minute return grace period</p>
                     <p className="text-xs text-zinc-500">Flexible buffer without automatic extension fees</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <div className="mt-0.5 size-1.5 rounded-full bg-emerald-600 shrink-0" />
+                  <div className="mt-0.5 size-1.5 rounded-full bg-zinc-900 shrink-0" />
                   <div>
                     <p className="text-sm font-medium text-zinc-900">24/7 Roadside support</p>
                     <p className="text-xs text-zinc-500">Full roadside assistance throughout your trip</p>

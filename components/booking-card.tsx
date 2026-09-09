@@ -21,7 +21,7 @@ export function BookingCard({ car }: { car: Car }) {
       </div>
       <div className="mt-5 flex flex-col gap-2.5 text-xs text-zinc-600">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="size-3.5 text-emerald-600 shrink-0" />
+          <ShieldCheck className="size-3.5 text-zinc-500 shrink-0" />
           <span>Free cancellation within 24h of booking</span>
         </div>
         <div className="flex items-center gap-2">

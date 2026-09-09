@@ -42,7 +42,7 @@ export function VehicleActions({
     >
       {copied ? (
         <>
-          <Check className="size-3.5 text-emerald-600" />
+          <Check className="size-3.5 text-zinc-900" />
           Link copied!
         </>
       ) : (
