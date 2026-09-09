@@ -63,8 +63,8 @@ export function ReviewCard({
             </div>
           </div>
 
-          <span className="inline-flex shrink-0 items-center gap-1 rounded-md bg-zinc-100/90 px-1.5 py-0.5 text-[9px] font-medium text-zinc-500 border border-zinc-200/60">
-            <ShieldCheck className="size-2.5 text-zinc-400" />
+          <span className="inline-flex shrink-0 items-center gap-1 rounded-md bg-emerald-900 px-1.5 py-0.5 text-[9px] font-semibold text-white">
+            <ShieldCheck className="size-2.5 text-emerald-300" />
             Verified
           </span>
         </div>
@@ -123,8 +123,9 @@ export function ReviewsSection({
       <div className="mx-auto max-w-6xl px-4 sm:px-6 mb-6 sm:mb-8">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 border border-amber-200/60 px-2.5 py-1 text-xs font-semibold text-amber-800">
-              <span className="font-bold">5.0 ★</span>
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-900 px-3 py-1 text-xs font-semibold text-white shadow-2xs">
+              <span className="font-bold text-amber-400">5.0 ★</span>
+              <span className="text-emerald-300/60">•</span>
               <span>{site.reviewsCount}+ verified reviews</span>
             </div>
             <h2 className="mt-2 text-2xl font-bold tracking-tight text-zinc-950 sm:text-3xl lg:text-4xl">

@@ -66,8 +66,8 @@ export function HostProfileCard({ className }: { className?: string }) {
               <h2 className="text-base font-bold text-zinc-950 sm:text-lg">
                 {site.hostSubtitle}
               </h2>
-              <span className="inline-flex items-center gap-1 rounded-md bg-amber-50/80 border border-amber-200/70 px-2 py-0.5 text-xs font-semibold text-amber-900">
-                <Star className="size-3 fill-amber-400 text-amber-500" />
+              <span className="inline-flex items-center gap-1 rounded-full bg-emerald-900 px-2.5 py-0.5 text-xs font-semibold text-white shadow-2xs">
+                <Star className="size-3 fill-amber-400 text-amber-400" />
                 {site.hostBadge}
               </span>
             </div>
