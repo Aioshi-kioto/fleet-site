@@ -43,7 +43,7 @@ export function carsByCategory(category?: CarCategory) {
 }
 
 export function hostReviews() {
-  return reviews.slice(0, 12);
+  return reviews.slice(0, 20);
 }
 
 export function reviewsForCar(slug: string): Review[] {

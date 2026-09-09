@@ -1,7 +1,4 @@
-"use client";
-
-import { ChevronLeft, ChevronRight, ExternalLink, ShieldCheck } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { ExternalLink, ShieldCheck } from "lucide-react";
 
 import { StarRating } from "@/components/star-rating";
 import { type Review } from "@/data/reviews";
@@ -29,34 +26,40 @@ export function ReviewCard({
   return (
     <article
       className={cn(
-        "flex flex-col justify-between rounded-2xl border border-zinc-200/90 bg-white p-6 shadow-xs transition-all hover:border-zinc-300 hover:shadow-md",
+        "flex flex-col justify-between rounded-xl sm:rounded-2xl border border-zinc-200/90 bg-white p-3.5 sm:p-4.5 shadow-xs transition-all hover:border-zinc-300 hover:shadow-md",
         className,
       )}
     >
       <div>
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-zinc-100 to-zinc-200 text-xs font-bold text-zinc-800">
+        <div className="flex items-start justify-between gap-2.5">
+          <div className="flex items-center gap-2.5">
+            <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-zinc-100 to-zinc-200 text-xs font-bold text-zinc-800 sm:size-9">
               {initials(review.name)}
             </div>
             <div>
-              <p className="text-sm font-bold text-zinc-950">{review.name}</p>
-              <div className="mt-0.5 flex items-center gap-2">
+              <p className="text-xs font-bold text-zinc-950 sm:text-sm">
+                {review.name}
+              </p>
+              <div className="mt-0.5 flex items-center gap-1.5">
                 <StarRating />
-                <span className="inline-flex items-center gap-0.5 text-[11px] font-medium text-emerald-700">
-                  <ShieldCheck className="size-3" />
+                <span className="inline-flex items-center gap-0.5 text-[10px] font-medium text-emerald-700">
+                  <ShieldCheck className="size-2.5" />
                   Verified
                 </span>
               </div>
             </div>
           </div>
-          <span className="text-xs text-zinc-500">{review.date}</span>
+          <span className="text-[10px] text-zinc-400 sm:text-xs shrink-0">
+            {review.date}
+          </span>
         </div>
 
-        <p className="mt-4 text-sm leading-6 text-zinc-700">&ldquo;{review.quote}&rdquo;</p>
+        <p className="mt-2.5 text-xs leading-5 text-zinc-700 line-clamp-3 sm:mt-3 sm:text-[13px] sm:leading-6">
+          &ldquo;{review.quote}&rdquo;
+        </p>
       </div>
 
-      <div className="mt-6 flex items-center justify-between border-t border-zinc-100 pt-3 text-[11px] text-zinc-500">
+      <div className="mt-3 flex items-center justify-between border-t border-zinc-100 pt-2 text-[10px] text-zinc-400 sm:mt-3.5 sm:pt-2.5 sm:text-[11px]">
         <span>Turo 5-Star Rental</span>
         <span>Federal Way, WA</span>
       </div>
@@ -71,61 +74,19 @@ export function ReviewsSection({
   items: Review[];
   heading?: string;
 }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const mid = Math.ceil(items.length / 2);
+  const row1 = items.slice(0, mid);
+  const row2 = items.slice(mid);
 
-  function checkScroll() {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-
-    const cardWidth = el.querySelector("article")?.clientWidth ?? 380;
-    const index = Math.round(el.scrollLeft / cardWidth);
-    setActiveIndex(Math.min(items.length - 1, Math.max(0, index)));
-  }
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    checkScroll();
-    el.addEventListener("scroll", checkScroll, { passive: true });
-    window.addEventListener("resize", checkScroll);
-    return () => {
-      el.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("resize", checkScroll);
-    };
-  }, [items.length]);
-
-  function scroll(direction: "left" | "right") {
-    const el = scrollRef.current;
-    if (!el) return;
-    const cardWidth = (el.querySelector("article")?.clientWidth ?? 380) + 20;
-    el.scrollBy({
-      left: direction === "left" ? -cardWidth : cardWidth,
-      behavior: "smooth",
-    });
-  }
-
-  function scrollToIndex(index: number) {
-    const el = scrollRef.current;
-    if (!el) return;
-    const cardWidth = (el.querySelector("article")?.clientWidth ?? 380) + 20;
-    el.scrollTo({
-      left: index * cardWidth,
-      behavior: "smooth",
-    });
-  }
+  const doubleRow1 = [...row1, ...row1];
+  const doubleRow2 = [...row2, ...row2];
 
   return (
     <section
       id="reviews"
-      className="scroll-mt-24 border-t border-zinc-100 bg-zinc-50/50 py-14 sm:py-20"
+      className="scroll-mt-24 border-t border-zinc-100 bg-zinc-50/50 py-12 sm:py-16 overflow-hidden"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        {/* Header with Title and Carousel Controls */}
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 mb-7 sm:mb-9">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 border border-amber-200/60 px-2.5 py-1 text-xs font-semibold text-amber-800">
@@ -135,77 +96,50 @@ export function ReviewsSection({
             <h2 className="mt-2 text-2xl font-bold tracking-tight text-zinc-950 sm:text-3xl lg:text-4xl">
               {heading}
             </h2>
-            <p className="mt-1.5 text-sm text-zinc-600">
+            <p className="mt-1.5 text-xs text-zinc-600 sm:text-sm">
               Real feedback from travelers who booked Roman&apos;s fleet across Greater Seattle.
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
-            <a
-              href={site.turoHostUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden items-center gap-1 text-xs font-semibold text-zinc-700 hover:text-zinc-950 sm:inline-flex"
-            >
-              All reviews on Turo
-              <ExternalLink className="size-3.5" />
-            </a>
-
-            <div className="flex items-center gap-1.5">
-              <button
-                type="button"
-                onClick={() => scroll("left")}
-                disabled={!canScrollLeft}
-                aria-label="Previous review"
-                className={cn(
-                  "flex size-10 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-800 shadow-xs transition-all hover:bg-zinc-100 disabled:opacity-30 disabled:pointer-events-none",
-                )}
-              >
-                <ChevronLeft className="size-5" />
-              </button>
-              <button
-                type="button"
-                onClick={() => scroll("right")}
-                disabled={!canScrollRight}
-                aria-label="Next review"
-                className={cn(
-                  "flex size-10 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-800 shadow-xs transition-all hover:bg-zinc-100 disabled:opacity-30 disabled:pointer-events-none",
-                )}
-              >
-                <ChevronRight className="size-5" />
-              </button>
-            </div>
-          </div>
+          <a
+            href={site.turoHostUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-700 hover:text-zinc-950 transition-colors sm:text-sm"
+          >
+            View all on Turo
+            <ExternalLink className="size-3.5" />
+          </a>
         </div>
+      </div>
 
-        {/* Carousel Container */}
-        <div
-          ref={scrollRef}
-          className="mt-8 flex gap-5 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {items.map((review) => (
+      {/* Two-Row Animated Marquee */}
+      <div className="relative w-full overflow-hidden space-y-3 sm:space-y-4">
+        {/* Gradient edge masks */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 sm:w-28 bg-gradient-to-r from-zinc-50/95 via-zinc-50/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 sm:w-28 bg-gradient-to-l from-zinc-50/95 via-zinc-50/70 to-transparent" />
+
+        {/* Row 1: Scrolling Left */}
+        <div className="animate-marquee-left flex gap-3 sm:gap-4 px-2">
+          {doubleRow1.map((review, i) => (
             <div
-              key={review.id}
-              className="w-[85vw] shrink-0 snap-start sm:w-[380px] lg:w-[420px]"
+              key={`r1-${review.id}-${i}`}
+              className="w-[260px] sm:w-[310px] md:w-[340px] shrink-0"
             >
               <ReviewCard review={review} className="h-full" />
             </div>
           ))}
         </div>
 
-        {/* Indicator dots */}
-        <div className="mt-4 flex items-center justify-center gap-1.5">
-          {items.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => scrollToIndex(i)}
-              aria-label={`Go to slide ${i + 1}`}
-              className={cn(
-                "h-1.5 rounded-full transition-all duration-300",
-                activeIndex === i ? "w-6 bg-zinc-950" : "w-1.5 bg-zinc-300 hover:bg-zinc-400",
-              )}
-            />
+        {/* Row 2: Scrolling Right */}
+        <div className="animate-marquee-right flex gap-3 sm:gap-4 px-2">
+          {doubleRow2.map((review, i) => (
+            <div
+              key={`r2-${review.id}-${i}`}
+              className="w-[260px] sm:w-[310px] md:w-[340px] shrink-0"
+            >
+              <ReviewCard review={review} className="h-full" />
+            </div>
           ))}
         </div>
       </div>
