@@ -1,5 +1,9 @@
+"use client";
+
 import {
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
   ExternalLink,
   Fuel,
   Star,
@@ -7,6 +11,7 @@ import {
   Waypoints,
 } from "lucide-react";
 import Link from "next/link";
+import { useRef, useState } from "react";
 
 import { PhotoSlot } from "@/components/photo-slot";
 import { type Car } from "@/data/cars";
@@ -20,6 +25,28 @@ type CarCardProps = {
 };
 
 export function CarCard({ car, className }: CarCardProps) {
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+
+  const totalPhotos = car.images.length;
+  const currentImage = car.images[photoIndex] ?? car.images[0] ?? "";
+
+  function nextPhoto(e?: React.MouseEvent | React.TouchEvent) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setPhotoIndex((prev) => (prev < totalPhotos - 1 ? prev + 1 : 0));
+  }
+
+  function prevPhoto(e?: React.MouseEvent | React.TouchEvent) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setPhotoIndex((prev) => (prev > 0 ? prev - 1 : totalPhotos - 1));
+  }
+
   const spec = [
     { icon: Users, label: `${car.seats} seats` },
     { icon: Fuel, label: car.mpg ? `${car.mpg} MPG` : car.fuel },
@@ -35,22 +62,39 @@ export function CarCard({ car, className }: CarCardProps) {
         className,
       )}
     >
-      {/* Clickable Image Container */}
-      <Link
-        href={detailUrl}
-        className="relative block aspect-[16/10] w-full overflow-hidden bg-zinc-100"
-        aria-label={`View details for ${carTitle(car)}`}
-      >
-        <PhotoSlot
-          src={publicImage(car.images[0] ?? "")}
-          alt={carTitle(car)}
-          label={carTitle(car)}
-          className="h-full w-full transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
+      {/* Clickable Image Container with Carousel Flipping */}
+      <div className="relative block aspect-[16/10] w-full overflow-hidden bg-zinc-100 select-none">
+        <Link
+          href={detailUrl}
+          className="absolute inset-0 z-0 block"
+          aria-label={`View details for ${carTitle(car)}`}
+          onTouchStart={(e) => {
+            touchStartX.current = e.touches[0].clientX;
+          }}
+          onTouchEnd={(e) => {
+            if (touchStartX.current === null) return;
+            const diff = touchStartX.current - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 35) {
+              if (diff > 0) {
+                nextPhoto(e);
+              } else {
+                prevPhoto(e);
+              }
+            }
+            touchStartX.current = null;
+          }}
+        >
+          <PhotoSlot
+            src={publicImage(currentImage)}
+            alt={carTitle(car)}
+            label={carTitle(car)}
+            className="h-full w-full transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        </Link>
 
         {/* Floating Badges */}
-        <div className="absolute top-3 left-3 flex flex-wrap items-center gap-1.5">
+        <div className="pointer-events-none absolute top-3 left-3 z-10 flex flex-wrap items-center gap-1.5">
           <span className="rounded-full bg-zinc-950/85 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-xs">
             {car.category}
           </span>
@@ -59,14 +103,49 @@ export function CarCard({ car, className }: CarCardProps) {
           </span>
         </div>
 
-        <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1 text-[11px] font-bold text-zinc-900 shadow-xs backdrop-blur-xs">
+        <div className="pointer-events-none absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1 text-[11px] font-bold text-zinc-900 shadow-xs backdrop-blur-xs">
           <Star className="size-3 fill-amber-400 text-amber-500" />
           <span>{car.rating.toFixed(1)}</span>
           <span className="text-[10px] font-normal text-zinc-500">
             ({car.trips})
           </span>
         </div>
-      </Link>
+
+        {/* Navigation Arrows for Photos */}
+        {totalPhotos > 1 ? (
+          <>
+            <button
+              type="button"
+              onClick={prevPhoto}
+              aria-label="Previous photo"
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 flex size-7 items-center justify-center rounded-full bg-white/90 text-zinc-800 shadow-md backdrop-blur-xs transition-all hover:bg-white hover:scale-105 active:scale-95 sm:opacity-0 sm:group-hover:opacity-100 sm:size-8"
+            >
+              <ChevronLeft className="size-4" />
+            </button>
+            <button
+              type="button"
+              onClick={nextPhoto}
+              aria-label="Next photo"
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 flex size-7 items-center justify-center rounded-full bg-white/90 text-zinc-800 shadow-md backdrop-blur-xs transition-all hover:bg-white hover:scale-105 active:scale-95 sm:opacity-0 sm:group-hover:opacity-100 sm:size-8"
+            >
+              <ChevronRight className="size-4" />
+            </button>
+
+            {/* Photo Indicators */}
+            <div className="pointer-events-none absolute bottom-2.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1">
+              {car.images.map((_, idx) => (
+                <span
+                  key={idx}
+                  className={cn(
+                    "h-1.5 rounded-full transition-all duration-200 shadow-xs",
+                    photoIndex === idx ? "w-3.5 bg-white" : "w-1.5 bg-white/60",
+                  )}
+                />
+              ))}
+            </div>
+          </>
+        ) : null}
+      </div>
 
       {/* Card Content */}
       <div className="flex flex-1 flex-col p-4 sm:p-5">
