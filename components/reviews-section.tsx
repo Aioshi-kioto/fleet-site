@@ -49,18 +49,9 @@ export function ReviewCard({
             <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-zinc-100 to-zinc-200 text-[11px] font-bold text-zinc-800 sm:size-8">
               {initials(review.name)}
             </div>
-            <div className="min-w-0">
-              <p className="text-xs font-bold text-zinc-950 truncate leading-tight sm:text-[13px]">
-                {review.name}
-              </p>
-              <div className="mt-0.5 flex items-center gap-1">
-                <StarRating />
-                <span className="text-[10px] text-zinc-400">·</span>
-                <span className="text-[10px] text-zinc-400 shrink-0">
-                  {formatShortDate(review.date)}
-                </span>
-              </div>
-            </div>
+            <p className="text-xs font-bold text-zinc-950 truncate leading-tight sm:text-[13px]">
+              {review.name}
+            </p>
           </div>
 
           <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-emerald-50 px-1.5 py-0.5 text-[9px] font-semibold text-emerald-700 border border-emerald-100/80">
@@ -69,7 +60,15 @@ export function ReviewCard({
           </span>
         </div>
 
-        <p className="mt-2.5 text-xs leading-relaxed text-zinc-700 line-clamp-3 sm:text-[13px]">
+        <div className="mt-1.5 flex items-center gap-1.5">
+          <StarRating />
+          <span className="text-[10px] text-zinc-400">·</span>
+          <span className="text-[10px] text-zinc-400 shrink-0">
+            {formatShortDate(review.date)}
+          </span>
+        </div>
+
+        <p className="mt-2 text-xs leading-relaxed text-zinc-700 line-clamp-3 sm:text-[13px]">
           &ldquo;{review.quote}&rdquo;
         </p>
       </div>
@@ -158,7 +157,7 @@ export function ReviewsSection({
           {doubleRow1.map((review, i) => (
             <div
               key={`r1-${review.id}-${i}`}
-              className="w-[235px] sm:w-[285px] md:w-[320px] shrink-0"
+              className="w-[260px] sm:w-[290px] md:w-[320px] shrink-0"
             >
               <ReviewCard review={review} className="h-full" />
             </div>
@@ -170,7 +169,7 @@ export function ReviewsSection({
           {doubleRow2.map((review, i) => (
             <div
               key={`r2-${review.id}-${i}`}
-              className="w-[235px] sm:w-[285px] md:w-[320px] shrink-0"
+              className="w-[260px] sm:w-[290px] md:w-[320px] shrink-0"
             >
               <ReviewCard review={review} className="h-full" />
             </div>
