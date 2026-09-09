@@ -13,7 +13,7 @@ export const site = {
   pickup: "Federal Way, WA",
   hostAvatar: "/brand/roman.jpg",
   turoHostUrl: "https://turo.com/us/en/host/39110544",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://romanfleet.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://midnightdrivegroup.com",
   heroImage: "/brand/hero.jpg",
   ctaImage: "/brand/cta-seattle.jpg",
 } as const;
