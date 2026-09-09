@@ -1,9 +1,6 @@
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 
 import { TuroLink } from "@/components/turo-link";
-import { site } from "@/data/site";
-import { publicImage } from "@/lib/public-image";
 
 type SeattleBannerProps = {
   eyebrow?: string;
@@ -22,24 +19,9 @@ export function SeattleBanner({
   action,
   script = "Seattle Awaits",
 }: SeattleBannerProps) {
-  const bgImage = publicImage(site.ctaImage);
-
   return (
     <section className="relative isolate overflow-hidden bg-zinc-950 text-white">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.2),rgba(255,255,255,0))]" />
-
-      {bgImage ? (
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src={bgImage}
-            alt="Seattle skyline"
-            fill
-            sizes="100vw"
-            className="object-cover opacity-25"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent" />
-        </div>
-      ) : null}
 
       <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-8 px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:py-20">
         <div className="max-w-xl">
