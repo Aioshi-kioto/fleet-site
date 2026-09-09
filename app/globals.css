@@ -165,10 +165,10 @@
 
 @media (max-width: 640px) {
   .animate-marquee-left {
-    animation-duration: 30s;
+    animation-duration: 38s;
   }
   .animate-marquee-right {
-    animation-duration: 30s;
+    animation-duration: 38s;
   }
 }
 
