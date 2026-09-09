@@ -118,7 +118,7 @@ export function ReviewsSection({
   return (
     <section
       id="reviews"
-      className="scroll-mt-24 border-t border-zinc-100 bg-zinc-50/50 py-10 sm:py-16 overflow-hidden"
+      className="scroll-mt-24 border-t border-zinc-100 bg-zinc-50/50 pt-10 pb-8 sm:pt-14 sm:pb-10 overflow-hidden"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 mb-6 sm:mb-8">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
@@ -147,14 +147,14 @@ export function ReviewsSection({
         </div>
       </div>
 
-      {/* Two-Row Animated Marquee */}
-      <div className="relative w-full overflow-hidden space-y-2.5 sm:space-y-3.5">
+      {/* Two-Row Animated Marquee with safe vertical padding against clipping */}
+      <div className="relative w-full overflow-hidden py-2 space-y-2.5 sm:space-y-3.5">
         {/* Subtle Edge fade masks */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 sm:w-24 bg-gradient-to-r from-zinc-50/95 via-zinc-50/60 to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-6 sm:w-24 bg-gradient-to-l from-zinc-50/95 via-zinc-50/60 to-transparent" />
 
         {/* Row 1: Scrolling Left */}
-        <div className="animate-marquee-left flex gap-2.5 sm:gap-3.5 px-2">
+        <div className="animate-marquee-left flex gap-2.5 sm:gap-3.5 px-2 py-1">
           {doubleRow1.map((review, i) => (
             <div
               key={`r1-${review.id}-${i}`}
@@ -166,7 +166,7 @@ export function ReviewsSection({
         </div>
 
         {/* Row 2: Scrolling Right */}
-        <div className="animate-marquee-right flex gap-2.5 sm:gap-3.5 px-2">
+        <div className="animate-marquee-right flex gap-2.5 sm:gap-3.5 px-2 py-1">
           {doubleRow2.map((review, i) => (
             <div
               key={`r2-${review.id}-${i}`}

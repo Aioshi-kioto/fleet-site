@@ -153,22 +153,22 @@
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: marquee-left 45s linear infinite;
+  animation: marquee-left 75s linear infinite;
 }
 
 .animate-marquee-right {
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: marquee-right 45s linear infinite;
+  animation: marquee-right 75s linear infinite;
 }
 
 @media (max-width: 640px) {
   .animate-marquee-left {
-    animation-duration: 38s;
+    animation-duration: 60s;
   }
   .animate-marquee-right {
-    animation-duration: 38s;
+    animation-duration: 60s;
   }
 }
 

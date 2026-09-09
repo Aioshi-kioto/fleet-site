@@ -15,8 +15,8 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="scroll-mt-24 bg-zinc-50">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+    <section id="how-it-works" className="scroll-mt-24 bg-zinc-50 border-t border-zinc-200/60">
+      <div className="mx-auto max-w-6xl px-4 pt-8 pb-12 sm:pt-10 sm:pb-16 sm:px-6">
         <h2 className="text-2xl font-semibold tracking-tight text-zinc-950 lg:text-3xl">
           How it works
         </h2>
