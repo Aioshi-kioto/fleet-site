@@ -47,6 +47,20 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    if (href.startsWith("/#")) {
+      const targetId = href.replace("/#", "");
+      if (pathname === "/") {
+        e.preventDefault();
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          window.history.pushState(null, "", href);
+        }
+      }
+    }
+  }
+
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200/80 bg-white/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -63,6 +77,7 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className={cn(
                   "text-sm text-zinc-600 transition-colors hover:text-zinc-950",
                   active && "text-zinc-950",
@@ -102,7 +117,10 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 className="rounded-lg px-3 py-3 text-base text-zinc-800"
-                onClick={() => setOpen(false)}
+                onClick={(e) => {
+                  setOpen(false);
+                  handleNavClick(e, link.href);
+                }}
               >
                 {link.label}
               </Link>

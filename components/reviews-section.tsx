@@ -1,4 +1,7 @@
+"use client";
+
 import { ExternalLink, ShieldCheck } from "lucide-react";
+import { useEffect } from "react";
 
 import { StarRating } from "@/components/star-rating";
 import { type Review } from "@/data/reviews";
@@ -74,6 +77,25 @@ export function ReviewsSection({
   items: Review[];
   heading?: string;
 }) {
+  useEffect(() => {
+    function handleHash() {
+      if (window.location.hash === "#reviews") {
+        const el = document.getElementById("reviews");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
+
+    handleHash();
+    const timeout = setTimeout(handleHash, 250);
+    window.addEventListener("hashchange", handleHash);
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("hashchange", handleHash);
+    };
+  }, []);
+
   const mid = Math.ceil(items.length / 2);
   const row1 = items.slice(0, mid);
   const row2 = items.slice(mid);
